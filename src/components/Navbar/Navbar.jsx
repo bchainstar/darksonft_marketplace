@@ -2,13 +2,13 @@ import React from "react";
 import icon from "./favicon-32x32.png";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ connectToMetamask, isConnected }) => {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container">
         <img src={icon} alt="" />
         <Link to="/" className="navbar-brand ml-2">
-          NFT's
+          Logo
         </Link>
         <button
           className="navbar-toggler"
@@ -19,35 +19,50 @@ const Navbar = () => {
         </button>
         <div id="navbarNav" className="collapse navbar-collapse">
           <ul
-            style={{ fontSize: "0.8rem", letterSpacing: "0.2rem" }}
+            // style={{ fontSize: "0.8rem", letterSpacing: "0.2rem" }}
             className="navbar-nav ml-auto"
           >
             <li className="nav-item">
               <Link to="/" className="nav-link">
-                Home
+                DASHBOARD
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/mint" className="nav-link">
-                Mint NFT
+                MARKETPLACE
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/marketplace" className="nav-link">
-                Marketplace
+                TRAINING
               </Link>
             </li>
             <li className="nav-item">
               <Link to="/my-tokens" className="nav-link">
-                My Tokens
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/queries" className="nav-link">
-                Queries
+                PACKS
               </Link>
             </li>
           </ul>
+          <form className="form-inline my-2 my-lg-0">
+            {isConnected ? (
+              <li>
+              <Link to="/account" className="nav-link">
+                my account
+              </Link>
+            </li>
+            ):(
+              <li>
+              <a onClick={connectToMetamask}>
+                connect
+              </a>
+            </li>
+            
+            )}
+            
+            
+
+          </form>
+
         </div>
       </div>
     </nav>
